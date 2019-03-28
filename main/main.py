@@ -27,13 +27,14 @@ def read_phe_gen_i():
     print(df['Trait'].head())
     return df
 
-'''
+app = QApplication([])
 win = QWidget()
 table = QTableWidget()
 layout = QVBoxLayout()
 layout.addWidget(table)
 win.setLayout(layout)
 
+# TODO: make the UI auto-resize upon display
 def create_ui(dataframe):
     table.setColumnCount(len(dataframe.columns))
     table.setRowCount(len(dataframe.index))
@@ -41,11 +42,12 @@ def create_ui(dataframe):
         for j in range(len(dataframe.columns)):
             table.setItem(i, j, QTableWidgetItem(str(dataframe.iloc[i,j])))
     win.show()
-'''
+    app.exec_()
 
-dataframe = read_phe_gen_i()
-#TODO: use something different from PyQt (doesn't work on my computer)
-#create_ui(dataframe)
+df = read_phe_gen_i()
+# Don't try to print the entire dataframe, it takes half a minute to print it for me
+# for, it has about 130,000 rows
+#create_ui(df)
 
 '''
 parent_dir = Path(__file__).resolve().parents[1]
