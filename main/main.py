@@ -1,5 +1,7 @@
+import sys
 import requests
-import pandas as pd
+
+import load_dbs
 
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -19,35 +21,29 @@ def search_gene_ncbi(gene_name):
 # Let's print the IDs of the genes that appear upon searching for 'TP53'
 #search_gene_ncbi('TP53')
 
-# Reads the data downloaded from the PheGenI database of NCBI
-def read_phe_gen_i():
-    file_name = 'PheGenI_Association_full.tab'
-    file_path = Path(__file__).resolve().parents[1] / 'data' / file_name
-    df = pd.read_csv(file_path, sep='\t', engine='python')
-    print(df['Trait'].head())
-    return df
-
-app = QApplication([])
-win = QWidget()
+app = QApplication(sys.argv)
+#win = QWidget()
+win = QMainWindow()
 table = QTableWidget()
-layout = QVBoxLayout()
-layout.addWidget(table)
-win.setLayout(layout)
+#layout = QVBoxLayout()
+#layout.addWidget(table)
+#win.setLayout(layout)
 
 # TODO: make the UI auto-resize upon display
 def create_ui(dataframe):
+    win.setWindowTitle('Genome Linker')
+    win.setCentralWidget(table)
     table.setColumnCount(len(dataframe.columns))
-    table.setRowCount(len(dataframe.index))
-    for i in range(len(dataframe.index)):
+    # Avoid printing the entire dataframe due to their enormous size
+    table.setRowCount(1000)#len(dataframe.index))
+    table.setHorizontalHeaderLabels(dataframe.columns)
+    for i in range(1000):#len(dataframe.index)):
         for j in range(len(dataframe.columns)):
             table.setItem(i, j, QTableWidgetItem(str(dataframe.iloc[i,j])))
     win.show()
     app.exec_()
 
-df = read_phe_gen_i()
-# Don't try to print the entire dataframe, it takes half a minute to print it for me
-# for, it has about 130,000 rows
-#create_ui(df)
+create_ui(load_dbs.gene_dis_assn_data)
 
 '''
 parent_dir = Path(__file__).resolve().parents[1]
