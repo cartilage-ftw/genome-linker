@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 # Import self-written files
 
@@ -29,7 +30,14 @@ def load_tab_sep(file_name):
     '''
     file_path = Path(__file__).resolve().parents[1] / 'data' / file_name
     df = pd.read_csv(file_path, sep='\t', engine='python')
-    print("Successfully read: ", file_name)
+    print(df.shape)
+    df.fillna('', inplace=True)
+    #df_clean = df.applymap(lambda x: np.nan if isinstance(x, str) and x.isspace()
+    #                        else x)
+    #df_clean.dropna()
+    #print(df_clean.shape)
+    #df.dropna()
+    print("Successfully read:", file_name)
     return df
 
 

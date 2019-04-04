@@ -43,6 +43,7 @@ def create_ui(dataframe):
     win.show()
     app.exec_()
 
+
 create_ui(load_dbs.gene_dis_assn_data)
 
 '''
