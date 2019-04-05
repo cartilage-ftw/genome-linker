@@ -1,7 +1,10 @@
 import sys
 import requests
 
+# Import self-written files
+
 import load_dbs
+import create_ui
 
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -29,8 +32,7 @@ table = QTableWidget()
 #layout.addWidget(table)
 #win.setLayout(layout)
 
-# TODO: make the UI auto-resize upon display
-def create_ui(dataframe):
+def preview_df(dataframe):
     win.setWindowTitle('Genome Linker')
     win.setCentralWidget(table)
     table.setColumnCount(len(dataframe.columns))
@@ -44,7 +46,8 @@ def create_ui(dataframe):
     app.exec_()
 
 
-create_ui(load_dbs.gene_dis_assn_data)
+#preview_df(load_dbs.gene_dis_assn_data)
+create_ui.ApplicationUI()
 
 '''
 parent_dir = Path(__file__).resolve().parents[1]
