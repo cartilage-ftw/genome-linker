@@ -25,26 +25,6 @@ some_data = {"Neoplastic Syndromes, Hereditary" : 4864,
 "Biliary cirrhosis" : 560,
 "Psoriasis" : 559}
 
-some_data2 = {"Hereditary Neoplastic Syndromes" : 4864,
-"Calcification of coronary artery" : 3393,
-"Rheumatoid Arthritis" : 1618,
-"Hereditary Breast & Ovarian Cancer" : 1565,
-"Hereditary Nonpolyposis Colorectal Cancer" : 1234,
-"Familial Hypercholesterolemia" : 1150,
-"Schizophrenia" : 1114,
-"Non-Insulin-Dependent Diabetes Mellitus" : 803,
-"Breast Carcinoma" : 803,
-"Crohn Disease" : 774,
-"Androgenetic Alopecia" : 742,
-"Multiple Myeloma" : 734,
-"Sarcoidosis" : 731,
-"Breast Cancer, Familial" : 644,
-"Diabetes Mellitus, Insulin-Dependent" : 605,
-"Multiple Sclerosis" : 593,
-"Alzheimer's Disease" : 585,
-"Biliary cirrhosis" : 560,
-"Psoriasis" : 559}
-
 def getCount():
 	x = load_dbs.variant_dis_assn_data
 	y = x[x['diseaseType'] == 'group']
