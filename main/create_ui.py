@@ -5,15 +5,15 @@ from PyQt5.QtCore import *
 
 class ApplicationUI(QMainWindow):
 
-	# Enter command-line arguments as a list
-
 	def __init__(self):
 		self.app = QApplication([])
-		#self.win = QMainWindow()
 		super().__init__()
 		self.setWindowTitle('Genome Linker')
-		#win.setCentralWidget(QWidget())
 		self.resize(600, 400)
+
+		# TODO: add a radio button list which asks whether you're searching by symptom,
+		# disease name or phenotype
+		# TODO: add a search button and results field
 
 		self.searchbox = QLineEdit(self)
 		self.searchbox.move(12, 12)
@@ -26,6 +26,5 @@ class ApplicationUI(QMainWindow):
 		self.model.setStringList(set(load_dbs.gene_dis_assn_data['diseaseName'].iloc[:]))
 		self.auto_completer.setModel(self.model)
 
-		#searchbox.show()
 		self.show()
 		self.app.exec_()
