@@ -45,7 +45,7 @@ def preview_df(dataframe):
     win.show()
     app.exec_()
 
-df = load_dbs.variant_dis_assn_data
+#df = load_dbs.variant_dis_assn_data
 #schizoph = df[df['diseaseName'] == 'Schizophrenia']
 #preview_df(df)
 create_ui.ApplicationUI()

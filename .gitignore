@@ -1,0 +1,7 @@
+# File extensions to be ignored
+*.pyc
+
+# Directories to be ignored
+.idea
+.vscode
+data
