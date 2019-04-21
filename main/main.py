@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 from PyQt5.QtWidgets import *
 
+# Unused
 def search_gene_ncbi(gene_name):
     open_url = requests.request('GET', 'https://www.ncbi.nlm.nih.gov/gene/?term=' + gene_name)
     soup = BeautifulSoup(open_url.text, 'html.parser')

@@ -30,6 +30,7 @@ def getCount():
 	y = x[x['diseaseType'] == 'group']
 	x = x[x['diseaseType'] == 'disease']
 	x.append(y)
+	print('Unique SNPs count', len(x['snpId'].unique()))
 	#unique_diseases = x['diseaseName'].unique()
 	#unique_genes = x['geneSymbol'].unique()
 	#print(unique_diseases)
@@ -39,15 +40,33 @@ def getCount():
 	#print(list(some_data.values()))
 	#plt.hist(list(some_data.values()), bins=19)
 	x = list(range(19))
-	plt.figure(figsize=(8, 8))
-	plt.bar(x, list(some_data.values()), align='center')
+	fig = plt.figure(figsize=(8, 8))
+
+	text_col = 'white'
+	plt.rcParams['text.color'] = text_col
+	plt.rcParams['axes.labelcolor'] = text_col
+	plt.rcParams['xtick.color'] = text_col
+	plt.rcParams['ytick.color'] = text_col
+	plt.rcParams['axes.edgecolor'] = text_col
+
+	# Presentation background blends well with the following RGB color
+	bg_col = '#1E1E1C'
+
+	fig.patch.set_facecolor(bg_col)
+	ax = fig.add_subplot(111)
+	ax.set_facecolor(bg_col)
+	ax.bar(x, list(some_data.values()), align='center')
 	plt.xlabel("", rotation='vertical')
 	plt.ylabel("No. of variants identified")
 	plt.yticks(rotation='vertical')
 	plt.xticks(x, list(some_data.keys()), rotation='vertical')
-	plt.savefig('fig.png', bbox_inches='tight', pad_inches=0.25)
+
+	bins = ax.patches
+	for bin, value in zip(bins, some_data.values()):
+		ax.text(bin.get_x() + bin.get_width()/2, bin.get_height() + 10,
+				value, ha='center', va='bottom', rotation='vertical')
+	#plt.savefig('fig.png', bbox_inches='tight', pad_inches=0.25, dpi=600)
 	plt.show()
-	#plt.show()
 	#print(x['diseaseName'].value_counts())
 	'''file_path = Path(__file__).resolve().parents[0] / 'data/most_genes.csv'
 	print(file_path)
